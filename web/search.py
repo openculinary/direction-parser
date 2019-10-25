@@ -19,7 +19,7 @@ def build_query_terms(docs):
     for doc in docs:
         for ngrams in [2, 1]:
             for term in textparser.word_tokenize(doc, stopwords, ngrams):
-                yield term
+                yield doc, term
                 break
             else:
                 continue
@@ -28,10 +28,10 @@ def build_query_terms(docs):
 
 def execute_queries(index, queries):
     hits = defaultdict(set)
-    for query_term in build_query_terms(queries):
+    for query, term in build_query_terms(queries):
         try:
-            for doc_id in index.get_documents(query_term):
-                hits[doc_id].add(' '.join(query_term))
+            for doc_id in index.get_documents(term):
+                hits[doc_id].add(query)
         except IndexError:
             continue
     return hits
