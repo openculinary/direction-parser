@@ -21,6 +21,9 @@ def build_query_terms(docs):
             for term in textparser.word_tokenize(doc, stopwords, ngrams):
                 yield term
                 break
+            else:
+                continue
+            break
 
 
 def execute_queries(index, queries):
