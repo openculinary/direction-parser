@@ -31,6 +31,8 @@ def test_negative_term_query(example_docs):
     assert len(results) == 0
 
 def test_positive_phrase_query(example_docs):
+    doc_id = example_docs.index('extra content')
     index = build_search_index(example_docs)
     results = execute_queries(index, ['extra content'])
     assert len(results) == 1
+    assert 'extra content' in results[doc_id]
