@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: direction-parser-service
+spec:
+  selector:
+    app: direction-parser
+    role: web
+  ports:
+    - protocol: TCP
+      port: 80

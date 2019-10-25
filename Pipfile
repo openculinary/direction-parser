@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+gunicorn = "*"
+hashedindex = "*"
+stop-words = "*"
+
+[dev-packages]
+flake8 = "*"
+pytest = "==4.6.5"
+
+[requires]
+python_version = "3.7"

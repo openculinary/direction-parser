@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: direction-parser-deployment
+  labels:
+    app: direction-parser
+spec:
+  selector:
+    matchLabels:
+      app: direction-parser
+      role: web
+  template:
+    metadata:
+      labels:
+        app: direction-parser
+        role: web
+    spec:
+      imagePullSecrets:
+      - name: gitlab-registry
+      containers:
+      - image: registry.openculinary.org/reciperadar/direction-parser
+        imagePullPolicy: IfNotPresent
+        name: direction-parser
+        ports:
+        - containerPort: 80
+  replicas: 3
