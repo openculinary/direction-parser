@@ -36,4 +36,4 @@ def execute_queries(index, queries):
 
 def load_queries(filename):
     with open(filename) as f:
-        return f.readlines()
+        return [line.strip().lower() for line in f.readlines()]
