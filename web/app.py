@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, abort, jsonify, request
 
 from web.search import (
    build_search_index,
@@ -11,6 +11,16 @@ app = Flask(__name__)
 
 appliance_queries = load_queries('web/data/appliances.txt')
 utensil_queries = load_queries('web/data/utensils.txt')
+
+
+@app.route('/queries')
+def queries():
+    query_type = request.args.get('type')
+    if query_type == 'appliances':
+        return jsonify(appliance_queries)
+    if query_type == 'utensils':
+        return jsonify(appliance_queries)
+    return abort(404)
 
 
 @app.route('/', methods=['POST'])
