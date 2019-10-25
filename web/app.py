@@ -36,7 +36,13 @@ def root():
         results.append({
             'index': doc_id,
             'description': description,
-            'appliances': list(appliance_hits[doc_id]),
-            'utensils': list(utensil_hits[doc_id]),
+            'appliances': [
+                {'appliance': appliance}
+                for appliance in appliance_hits[doc_id]
+            ],
+            'utensils': [
+                {'utensil': utensil}
+                for utensil in utensil_hits[doc_id]
+            ],
         })
     return jsonify(results)
