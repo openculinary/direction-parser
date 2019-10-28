@@ -15,8 +15,6 @@ spec:
         app: direction-parser
         role: web
     spec:
-      imagePullSecrets:
-      - name: gitlab-registry
       containers:
       - image: registry.openculinary.org/reciperadar/direction-parser
         imagePullPolicy: IfNotPresent
