@@ -21,4 +21,3 @@ spec:
         name: direction-parser
         ports:
         - containerPort: 80
-  replicas: 3
