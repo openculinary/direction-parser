@@ -4,11 +4,11 @@ A `direction` is a description of a step performed during preparation of a recip
 
 For example, given the direction: `Place the casserole dish in the oven`, the `direction-parser` service can indicate that the direction references an `oven` appliance.
 
-This functionality is provided to the [crawler](../crawler) service so that it can extract additional data from each recipe crawled.
+This functionality is provided to the [crawler](https://www.github.com/openculinary/crawler) service so that it can extract additional data from each recipe crawled.
 
 ## Install dependencies
 
-Make sure to follow the RecipeRadar [infrastructure](../infrastructure) setup to ensure all cluster dependencies are available in your environment.
+Make sure to follow the RecipeRadar [infrastructure](https://www.github.com/openculinary/infrastructure) setup to ensure all cluster dependencies are available in your environment.
 
 ## Development
 
