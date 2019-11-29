@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 appliance_queries = load_queries('web/data/appliances.txt')
 utensil_queries = load_queries('web/data/utensils.txt')
+vessel_queries = load_queries('web/data/vessels.txt')
 
 
 @app.route('/queries')
@@ -18,6 +19,7 @@ def queries():
     queries_by_type = {
         'appliances': appliance_queries,
         'utensils': utensil_queries,
+        'vessels': vessel_queries,
     }
     query_type = request.args.get('type')
     queries = queries_by_type.get(query_type)
@@ -33,6 +35,7 @@ def root():
     index = build_search_index(descriptions)
     appliance_hits = execute_queries(index, appliance_queries)
     utensil_hits = execute_queries(index, utensil_queries)
+    vessel_hits = execute_queries(index, vessel_queries)
 
     results = []
     for doc_id, description in enumerate(descriptions):
@@ -46,6 +49,10 @@ def root():
             'utensils': [
                 {'utensil': utensil}
                 for utensil in utensil_hits[doc_id]
+            ],
+            'vessels': [
+                {'vessel': vessel}
+                for vessel in vessel_hits[doc_id]
             ],
         })
     return jsonify(results)
