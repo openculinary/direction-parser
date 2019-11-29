@@ -19,7 +19,7 @@ def queries():
     if query_type == 'appliances':
         return jsonify(appliance_queries)
     if query_type == 'utensils':
-        return jsonify(appliance_queries)
+        return jsonify(utensil_queries)
     return abort(404)
 
 
