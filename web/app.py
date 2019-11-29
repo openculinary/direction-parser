@@ -15,12 +15,15 @@ utensil_queries = load_queries('web/data/utensils.txt')
 
 @app.route('/queries')
 def queries():
+    queries_by_type = {
+        'appliances': appliance_queries,
+        'utensils': utensil_queries,
+    }
     query_type = request.args.get('type')
-    if query_type == 'appliances':
-        return jsonify(appliance_queries)
-    if query_type == 'utensils':
-        return jsonify(utensil_queries)
-    return abort(404)
+    queries = queries_by_type.get(query_type)
+    if not queries:
+        return abort(404)
+    return jsonify(queries)
 
 
 @app.route('/', methods=['POST'])
