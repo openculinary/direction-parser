@@ -4,14 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
-gunicorn = "*"
-hashedindex = "*"
-stop-words = "*"
+flask = "==1.1.1"
+gunicorn = "==20.0.4"
+hashedindex = "==0.5.0"
+stop-words = "==2018.7.23"
 
 [dev-packages]
 flake8 = "*"
-pytest = "==4.6.5"
+pytest = "*"
 
 [requires]
 python_version = "3.7"
