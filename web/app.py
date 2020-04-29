@@ -96,7 +96,6 @@ def root():
             stemmer=stemmer,
             analyzer=None
         )
-    print(markup_by_doc)
 
     results = []
     for doc_id, description in enumerate(descriptions):
