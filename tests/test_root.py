@@ -18,19 +18,23 @@ def test_vessel_queries(client):
 
 def test_description_parsing(client):
     description_equipment = {
-        'pre-heat the oven to 300 degrees': {
+        'pre-heat the oven': {
+            'markup': 'preheat the <mark>oven</mark>',
             'appliances': ['oven'],
         },
-        'leave the slow cooker on a low heat for three hours': {
+        'leave the slow cooker on a low heat': {
+            'markup': 'leave the <mark>slow cooker</mark> on a low heat',
             'appliances': ['slow cooker'],
         },
-        'remove the casserole dish from the oven': {
+        'place casserole dish in oven': {
+            'markup': 'place <mark>casserole dish</mark> in <mark>oven</mark>',
             'appliances': ['oven'],
             'vessels': ['casserole dish'],
         },
-        'place the skewers in the frying pan': {
+        'empty skewer into the karahi': {
+            'markup': 'empty <mark>skewer</mark> into the <mark>karahi</mark>',
             'utensils': ['skewer'],
-            'vessels': ['frying pan'],
+            'vessels': ['karahi'],
         },
     }
 

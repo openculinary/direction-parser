@@ -3,6 +3,7 @@ from flask import Flask, abort, jsonify, request
 from hashedixsearch import (
    build_search_index,
    execute_queries,
+   highlight,
    tokenize,
    NullStemmer,
 )
@@ -79,11 +80,30 @@ def root():
     utensils_by_doc = equipment_by_document(index, utensil_queries)
     vessels_by_doc = equipment_by_document(index, vessel_queries)
 
+    markup_by_doc = {}
+    for doc_id, description in enumerate(descriptions):
+        equipment = appliances_by_doc[doc_id] \
+            | utensils_by_doc[doc_id] \
+            | vessels_by_doc[doc_id]
+        terms = []
+        for equipment in equipment:
+            for term in tokenize(equipment, stemmer=stemmer):
+                terms.append(term)
+                break
+        markup_by_doc[doc_id] = highlight(
+            query=description,
+            terms=terms,
+            stemmer=stemmer,
+            analyzer=None
+        )
+    print(markup_by_doc)
+
     results = []
     for doc_id, description in enumerate(descriptions):
         results.append({
             'index': doc_id,
             'description': description,
+            'markup': markup_by_doc.get(doc_id),
             'appliances': list(appliances_by_doc[doc_id]),
             'utensils': list(utensils_by_doc[doc_id]),
             'vessels': list(vessels_by_doc[doc_id]),
