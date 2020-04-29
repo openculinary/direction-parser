@@ -82,14 +82,14 @@ def root():
 
     markup_by_doc = {}
     for doc_id, description in enumerate(descriptions):
-        equipment = appliances_by_doc[doc_id] \
-            | utensils_by_doc[doc_id] \
+        equipment = (
+            appliances_by_doc[doc_id]
+            | utensils_by_doc[doc_id]
             | vessels_by_doc[doc_id]
+        )
         terms = []
         for equipment in equipment:
-            for term in tokenize(equipment, stemmer=stemmer):
-                terms.append(term)
-                break
+            terms.append(next(tokenize(equipment, stemmer=stemmer)))
         markup_by_doc[doc_id] = highlight(
             query=description,
             terms=terms,
