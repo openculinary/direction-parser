@@ -28,7 +28,7 @@ def test_description_parsing(client):
             'appliances': ['oven'],
             'vessels': ['casserole dish'],
         },
-        'place the skewer in the frying pan': {
+        'place the skewers in the frying pan': {
             'utensils': ['skewer'],
             'vessels': ['frying pan'],
         },

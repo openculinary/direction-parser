@@ -4,13 +4,23 @@ from hashedixsearch import (
    build_search_index,
    execute_queries,
    tokenize,
+   NullStemmer,
 )
+from snowballstemmer import stemmer
 from stop_words import get_stop_words as get_stopwords
 
 
 def load_queries(filename):
     with open(filename) as f:
         return [line.strip().lower() for line in f.readlines()]
+
+
+class EquipmentStemmer(NullStemmer):
+
+    stemmer_en = stemmer('english')
+
+    def stem(self, x):
+        return self.stemmer_en.stemWord(x)
 
 
 app = Flask(__name__)
@@ -38,7 +48,13 @@ def queries():
 
 def equipment_by_document(index, queries):
     results_by_document = defaultdict(lambda: set())
-    equipment_hits = execute_queries(index, queries)
+    stemmer = EquipmentStemmer()
+    equipment_hits = execute_queries(
+        index=index,
+        queries=queries,
+        stemmer=stemmer,
+        stopwords=stopwords
+    )
     for equipment, hits in equipment_hits:
         for hit in hits:
             results_by_document[hit['doc_id']].add(equipment)
@@ -49,10 +65,14 @@ def equipment_by_document(index, queries):
 def root():
     descriptions = request.form.getlist('descriptions[]')
 
+    stemmer = EquipmentStemmer()
     index = build_search_index()
     for doc_id, doc in enumerate(descriptions):
         for ngrams in [1, 2]:
-            for term in tokenize(doc, stopwords=stopwords, ngrams=ngrams):
+            for term in tokenize(doc,
+                                 stopwords=stopwords,
+                                 ngrams=ngrams,
+                                 stemmer=stemmer):
                 index.add_term_occurrence(term, doc_id)
 
     appliances_by_doc = equipment_by_document(index, appliance_queries)
