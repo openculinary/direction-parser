@@ -102,8 +102,17 @@ def root():
             'index': doc_id,
             'description': description,
             'markup': markup_by_doc.get(doc_id),
-            'appliances': list(appliances_by_doc[doc_id]),
-            'utensils': list(utensils_by_doc[doc_id]),
-            'vessels': list(vessels_by_doc[doc_id]),
+            'appliances': [
+                {'appliance': appliance}
+                for appliance in appliances_by_doc[doc_id]
+            ],
+            'utensils': [
+                {'utensil': utensil}
+                for utensil in utensils_by_doc[doc_id]
+            ],
+            'vessels': [
+                {'vessel': vessel}
+                for vessel in vessels_by_doc[doc_id]
+            ],
         })
     return jsonify(results)
