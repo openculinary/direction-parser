@@ -18,8 +18,8 @@ def test_vessel_queries(client):
 
 def test_description_parsing(client):
     description_equipment = {
-        'pre-heat the oven': {
-            'markup': 'preheat the <mark>oven</mark>',
+        'Pre-heat the oven to 250 degrees F.': {
+            'markup': 'Pre-heat the <mark>oven</mark> to 250 degrees F.',
             'appliances': ['oven'],
         },
         'leave the slow cooker on a low heat': {
