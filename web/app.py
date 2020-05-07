@@ -93,8 +93,7 @@ def root():
         markup_by_doc[doc_id] = highlight(
             query=description,
             terms=terms,
-            stemmer=stemmer,
-            analyzer=None
+            stemmer=stemmer
         )
 
     results = []
