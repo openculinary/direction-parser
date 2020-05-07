@@ -18,4 +18,4 @@ flake8 = "*"
 pytest = "*"
 
 [packages.797bd8b]
-path = "https://github.com/openculinary/hashedixsearch/raw/e615320eb26c6fe0ab47e258c394db902c1d6ec5/dist/hashedixsearch-0.1.2rc0-py3-none-any.whl"
+path = "https://github.com/openculinary/hashedixsearch/raw/7e5dd00454a889e68dea580a0cafe5f51bf5344b/dist/hashedixsearch-0.1.2rc1-py3-none-any.whl"
