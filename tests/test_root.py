@@ -22,8 +22,8 @@ def test_description_parsing(client):
             'markup': 'Pre-heat the <mark>oven</mark> to 250 degrees F.',
             'appliances': [{'appliance': 'oven'}],
         },
-        'leave the slow cooker on a low heat': {
-            'markup': 'leave the <mark>slow cooker</mark> on a low heat',
+        'leave the Slow cooker, on a low heat': {
+            'markup': 'leave the <mark>Slow cooker</mark>, on a low heat',
             'appliances': [{'appliance': 'slow cooker'}],
         },
         'place casserole dish in oven': {
