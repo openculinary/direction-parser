@@ -1,5 +1,5 @@
 from collections import defaultdict
-from flask import Flask, abort, jsonify, request
+from flask import Flask, jsonify, request
 from hashedixsearch import (
    build_search_index,
    execute_queries,
@@ -31,20 +31,6 @@ stopwords = get_stopwords('en')
 appliance_queries = load_queries('web/data/appliances.txt')
 utensil_queries = load_queries('web/data/utensils.txt')
 vessel_queries = load_queries('web/data/vessels.txt')
-
-
-@app.route('/queries')
-def queries():
-    queries_by_type = {
-        'appliances': appliance_queries,
-        'utensils': utensil_queries,
-        'vessels': vessel_queries,
-    }
-    query_type = request.args.get('type')
-    queries = queries_by_type.get(query_type)
-    if not queries:
-        return abort(404)
-    return jsonify(queries)
 
 
 def equipment_by_document(index, queries):

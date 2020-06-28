@@ -1,21 +1,3 @@
-def test_appliance_queries(client):
-    response = client.get('/queries', query_string={'type': 'appliances'})
-
-    assert 'blender' in response.json
-
-
-def test_utensil_queries(client):
-    response = client.get('/queries', query_string={'type': 'utensils'})
-
-    assert 'whisk' in response.json
-
-
-def test_vessel_queries(client):
-    response = client.get('/queries', query_string={'type': 'vessels'})
-
-    assert 'dutch oven' in response.json
-
-
 def test_description_parsing(client):
     description_equipment = {
         'Pre-heat the oven to 250 degrees F.': {
