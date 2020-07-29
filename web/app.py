@@ -9,7 +9,7 @@ app = Flask(__name__)
 def root():
     descriptions = request.form.getlist('descriptions[]')
     equipment_data = requests.post(
-        url='http://knowledge-graph-service/equipment/query',
+        url='http://knowledge-graph-service/directions/query',
         data={'descriptions[]': descriptions},
         proxies={}
     )
