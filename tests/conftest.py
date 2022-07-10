@@ -14,7 +14,7 @@ def knowledge_graph_stub():
     with responses.RequestsMock() as response:
         response.add(
             responses.POST,
-            'http://knowledge-graph-service/directions/query',
-            status=500
+            "http://knowledge-graph-service/directions/query",
+            status=500,
         )
         yield response
