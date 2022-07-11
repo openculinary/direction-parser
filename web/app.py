@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-import requests
+import httpx
 
 
 app = Flask(__name__)
@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/", methods=["POST"])
 def root():
     descriptions = request.form.getlist("descriptions[]")
-    equipment_data = requests.post(
+    equipment_data = httpx.post(
         url="http://knowledge-graph-service/directions/query",
         data={"descriptions[]": descriptions},
         proxies={},
