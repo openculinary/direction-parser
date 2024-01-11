@@ -11,6 +11,6 @@ def root():
     equipment_data = httpx.post(
         url="http://knowledge-graph-service/directions/query",
         data={"descriptions[]": descriptions},
-        proxies={},
+        proxy=None,
     )
     return jsonify(equipment_data.json())
